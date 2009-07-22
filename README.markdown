@@ -5,13 +5,20 @@ A Ruby on Rails library modified from [RESTful_ACL](http://github.com/mdarby/res
 
 The primary differences between AA and RESTful_ACL besides the charming name are as follows:
 
-* Access control conditions can be defined in external files called "keymasters" (see How To Use: Models) .
-* Expectations can be set for multiple nested parents.
+1. Access control conditions can be defined in external files called "keymasters" (see How To Use: Models) .
+2. Expectations can be set for multiple nested parents.
 
 This library relies on both models and their associated RESTful controllers in the Rails convention. 
 
 How To Use: Models
 ------------------
+
+There are 2 ways to add access control via Authorization Apocalypse! to your models: Basic and Super Awesome. For both methods you will include the library like so
+
+    class StayPuft < ActiveRecord::Base
+      include AuthorizationApocalypse::Keymaster
+      logical_parents :gozer, :ray
+    end
 
 ### Basic
 
@@ -51,3 +58,35 @@ Here is an example:
     end
     
 ### Super Awesome
+
+There is however an unobtrusive method of defining access control on models. The library looks for a folder called "keymasters" in /app and tries to find a file in the convention _model\_name_keymaster.rb
+
+So to use the Super Awesome method of permission definition, do the following:
+
+1. Create the folder RAILS_ROOT/app/keymasters
+2. Create a file in with the convention _model\_name_keymaster.rb
+
+The keymaster file is loaded as a module, so the format is a little different than naked methods.
+
+    module StayPuftKeymaster
+
+      module ClassMethods  
+        def indexable_by?(user, parents = nil)
+        end
+
+        def creatable_by?(user, parent = nil)
+        end
+      end
+
+      def readable_by?(user, parents = nil)
+      end
+
+      def updatable_by?(user, parent = nil)
+      end
+
+      def deletable_by?(user, parent = nil)
+      end
+      
+    end
+    
+The Basic and Super Awesome methods of access control may be used together and in any combination. If AA methods are defined in both the model and a keymaster file, the keymaster file will overwrite the model's methods.
