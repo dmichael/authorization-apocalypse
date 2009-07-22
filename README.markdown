@@ -10,6 +10,8 @@ The primary differences between AA and RESTful_ACL besides the charming name are
 
 This library relies on both models and their associated RESTful controllers in the Rails convention. Oh, and while you can probably use any basic authentication and user system, this one was built with [Restful Authentication](http://github.com/technoweenie/restful-authentication/tree/master) in mind.
 
+I am currently using this library as a plugin, that is, it is in the plugins folder.
+
 How To Use: Controllers
 -----------------------
 
