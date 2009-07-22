@@ -1,24 +1,24 @@
 Authorization Apocalypse!
 =========================
 
-A Ruby on Rails library modified from [RESTful_ACL](http://github.com/mdarby/restful_acl/tree/master).
+A Ruby on Rails authorization library modified from [RESTful_ACL](http://github.com/mdarby/restful_acl/tree/master).
 
 The primary differences between AA and RESTful_ACL besides the charming name are as follows:
 
 1. Access control conditions can be defined in external files called "keymasters" (see How To Use: Models) .
 2. Expectations can be set for multiple nested parents.
 
-This library relies on both models and their associated RESTful controllers in the Rails convention. 
+This library relies on both models and their associated RESTful controllers in the Rails convention. Oh, and while you can probably use any basic authentication and user system, this one was built with [Restful Authentication](http://github.com/technoweenie/restful-authentication/tree/master) in mind.
 
 How To Use: Controllers
 -----------------------
 
 To use Authorization Apocalypse!, you need to include the library in your controller and call the has_permission? method in a before filter. Be aware that AA currently makes the assumption that controllers and models share their base names, that is, the Gatekeeper infers the name of the model to interrogate by the name of the controller.
 
-  class StayPuftsController < ApplicationController
-    include AuthorizationApocalypse::Gatekeeper
-    before_filter :has_permission?
-  end
+    class StayPuftsController < ApplicationController
+      include AuthorizationApocalypse::Gatekeeper
+      before_filter :has_permission?
+    end
 
 How To Use: Models
 ------------------
