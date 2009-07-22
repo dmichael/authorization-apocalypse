@@ -3,7 +3,8 @@ Authorization Apocalypse!
 
 A Ruby on Rails library modified from [RESTful_ACL](http://github.com/mdarby/restful_acl/tree/master).
 
-The primary differences between AA and RESTful_ACL besides the charming name are as follows 
+The primary differences between AA and RESTful_ACL besides the charming name are as follows:
+
 * Access control conditions can be defined in external files called "keymasters" (see How To Use: Models) .
 * Expectations can be set for multiple nested parents.
 
