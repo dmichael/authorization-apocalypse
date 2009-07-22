@@ -10,6 +10,16 @@ The primary differences between AA and RESTful_ACL besides the charming name are
 
 This library relies on both models and their associated RESTful controllers in the Rails convention. 
 
+How To Use: Controllers
+-----------------------
+
+To use Authorization Apocalypse!, you need to include the library in your controller and call the has_permission? method in a before filter. Be aware that AA currently makes the assumption that controllers and models share their base names, that is, the Gatekeeper infers the name of the model to interrogate by the name of the controller.
+
+  class StayPuftsController < ApplicationController
+    include AuthorizationApocalypse::Gatekeeper
+    before_filter :has_permission?
+  end
+
 How To Use: Models
 ------------------
 
